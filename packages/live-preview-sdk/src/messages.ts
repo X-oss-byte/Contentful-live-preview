@@ -7,6 +7,14 @@ import type { LIVE_PREVIEW_EDITOR_SOURCE, LIVE_PREVIEW_SDK_SOURCE } from './cons
 import { sendMessageToEditor } from './helpers';
 import type { ContentType, EntityReferenceMap } from './types';
 
+enum InteractionEventMethods {
+  MOUSE_MOVE = 'MOUSE_MOVE',
+  SCROLL_START = 'SCROLL_START',
+  SCROLL_END = 'SCROLL_END',
+  RESIZE_START = 'RESIZE_START',
+  RESIZE_END = 'RESIZE_END',
+}
+
 enum LivePreviewPostMessageMethods {
   CONNECTED = 'CONNECTED',
   DISCONNECTED = 'DISCONNECTED',
@@ -39,8 +47,12 @@ export {
   LivePreviewPostMessageMethods,
   RequestEntitiesMessage,
   RequestedEntitiesMessage,
+  InteractionEventMethods,
 };
-export type PostMessageMethods = LivePreviewPostMessageMethods | StorePostMessageMethods;
+export type PostMessageMethods =
+  | LivePreviewPostMessageMethods
+  | StorePostMessageMethods
+  | InteractionEventMethods;
 
 export type ConnectedMessage = {
   /** @deprecated use method instead */
